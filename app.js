@@ -3,89 +3,95 @@
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Treatment Data Dictionary
+
+  const WA_NUMBER = '601171127820';
+
+  // =========================================================================
+  // Treatment Data Dictionary (Real data from price lists)
+  // =========================================================================
   const treatmentsData = {
-    'urut-melayu': {
-      title: 'Traditional Malay Massage',
-      tag: 'Urut Melayu Tradisional',
-      price: 'RM 150 (60m) / RM 210 (90m)',
-      duration: '60 – 90 mins',
-      desc: 'Firm, rhythmic long strokes using warm infused coconut and lemongrass oil, passed down through generations to ease deep-seated muscle tension and restore body energy.',
+    'signature-facial': {
+      title: 'Signature Facial',
+      tag: '✦ Signature Facial',
+      price: 'From RM100',
+      duration: 'Varies by treatment',
+      desc: 'Our signature facial range restores your natural glow with curated, premium skincare techniques. Choose from brightening, vitamin-infused, or luxe glow options — each tailored to your skin needs.',
       steps: [
-        'Warm foot soak with kaffir lime and salt',
-        'Deep rhythmic tissue massage tracing body pressure points',
-        'Warm herbal compress application',
-        'Soothing head and scalp massage'
+        'Flawless Facial — RM100',
+        'Luxe Glow Facial — RM120',
+        'Signature Facial — RM150',
+        'Vitamin C Facial — RM250'
       ]
     },
-    'mandian-bunga': {
-      title: 'Flower Petal Bath Ritual',
-      tag: 'Mandian Bunga Rampai',
-      price: 'RM 130',
-      duration: '45 mins',
-      desc: 'Our signature ritual: a soothing warm copper tub bath scattered with fresh rose, jasmine, and shredded pandan leaves, paired with aura-cleansing herbal essences.',
+    'glowing-facial': {
+      title: 'Glowing Facial',
+      tag: '✦ Glowing Facial',
+      price: 'From RM180',
+      duration: 'Varies by treatment',
+      desc: 'Deeply hydrating and brightening treatments designed to restore radiance, calm inflammation, and leave your skin visibly luminous and supple.',
       steps: [
-        'Preparation with 7 traditional floral essences',
-        'Aromatic petal steam and soak',
-        'Hydrating floral water rinse',
-        'Application of jasmine body lotion'
+        'Crystal Gel Facial — RM199',
+        'Vitasnow Facial — RM399',
+        'Aqua Hyaluronic Calming — RM250',
+        'Hydrating Facial — RM180'
       ]
     },
-    'lulur-rempah': {
-      title: 'Herbal Turmeric Scrub',
-      tag: 'Lulur Rempah',
-      price: 'RM 160',
-      duration: '60 mins',
-      desc: 'A traditional fine rice, ginger, and wild turmeric body polish that removes dead skin cells, improves blood circulation, and leaves skin radiantly soft.',
+    'pigmentation-whitening': {
+      title: 'Pigmentation & Whitening',
+      tag: '♦ Pigmentation & Whitening',
+      price: 'From RM180',
+      duration: 'Varies by treatment',
+      desc: 'Targeted treatments to reduce dark spots, uneven skin tone, and hyperpigmentation — revealing clearer, brighter, and more even-toned skin with every session.',
       steps: [
-        'Gentle dry brush exfoliation',
-        'Warm turmeric and rice polish application',
-        'Warm towel body mask wrap',
-        'Nourishing herbal oil lotion polish'
+        'Lightening Facial — RM180',
+        'Aqua AHA Peel — RM250',
+        'Dermabright Peel — RM270',
+        'Elite K-Light Whitening — RM349',
+        'Premium Aqua AHA — RM399'
       ]
     },
-    'wajah-berseri': {
-      title: 'Facial Radiance Ritual',
-      tag: 'Wajah Berseri',
-      price: 'RM 175',
-      duration: '60 mins',
-      desc: 'A brightening facial using fresh organic botanicals, rice bran extracts, and cooling cucumber, finished with a gentle rose quartz gua sha facial massage.',
+    'anti-aging-care': {
+      title: 'Anti Aging & Care',
+      tag: '💧 Anti Aging & Care',
+      price: 'From RM239',
+      duration: 'Varies by treatment',
+      desc: 'Advanced anti-aging treatments using Dermapen micro-needling, ice snow therapy, and Vitamin C infusions to rejuvenate skin cells and restore youthful firmness.',
       steps: [
-        'Double cleansing with herbal oils',
-        'Botanical steam and mild exfoliation',
-        'Rosewater & organic honey facial mask',
-        'Gua sha sculpting massage & facial acupressure'
+        'Dermapen Therapy — RM250',
+        'Ice Snow Facial — RM239',
+        'Dermabright Peel — RM270',
+        'Double Layer Vitamin C — RM399'
       ]
     },
-    'bengkung-berpantang': {
-      title: 'Postnatal Care Ritual',
-      tag: 'Bengkung & Berpantang',
-      price: 'RM 240',
-      duration: '90 mins',
-      desc: 'Gentle confinement massage and traditional belly-binding (Bengkung) care designed specifically for new mothers seeking warmth, muscle recovery, and quiet rest.',
+    'oily-acne': {
+      title: 'Oily & Acne',
+      tag: '💎 Oily & Acne',
+      price: 'From RM180',
+      duration: 'Varies by treatment',
+      desc: 'Specifically formulated for oily, acne-prone skin — deep-cleansing and pore-refining treatments that reduce breakouts, minimize pores, and restore skin balance.',
       steps: [
-        'Soothe-and-warm confinement oil massage',
-        'Param & Tapel warming herbal paste application',
-        'Traditional cotton cloth Bengkung belly wrapping',
-        'Nourishing hot ginger tea'
+        'Diamond Carbon Peel — RM300',
+        'Purifying Facial — RM180',
+        'Acne Elite K-Light — RM399',
+        'Aqua BHA Peel — RM250'
       ]
     },
-    'rehat-teh': {
-      title: 'Foot Ritual & Herbal Tea',
-      tag: 'Rehat & Teh Herba',
-      price: 'RM 110',
-      duration: '45 mins',
-      desc: 'A relaxing lower leg and reflexology foot massage paired with warm pandan and lemongrass herbal tea — the ultimate quiet close to a busy day.',
+    'eye-treatment': {
+      title: 'Eye Treatment',
+      tag: '👁 Eye Treatment',
+      price: 'From RM150',
+      duration: 'Varies by treatment',
+      desc: 'Specialized under-eye treatments targeting dark circles, puffiness, and fine lines — giving you bright, refreshed eyes that reflect your natural beauty.',
       steps: [
-        'Warm floral foot bath & salt scrub',
-        'Reflexology acupressure point massage',
-        'Cooling cucumber leg wrap',
-        'Freshly brewed pandan & lemongrass herbal tea'
+        'Under Eye Treatment — RM150',
+        'Package 3 Sesi — RM399'
       ]
     }
   };
 
+  // =========================================================================
   // 1. Mobile Menu Toggle
+  // =========================================================================
   const burger = document.getElementById('burgerBtn');
   const mobileMenu = document.getElementById('mobileMenu');
 
@@ -101,7 +107,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // =========================================================================
   // 2. Sticky Nav Shadow & Active Scrollspy
+  // =========================================================================
   const nav = document.getElementById('siteNav');
   const navLinks = document.querySelectorAll('nav.links a');
   const sections = document.querySelectorAll('section[id]');
@@ -111,7 +119,6 @@ document.addEventListener('DOMContentLoaded', () => {
       nav.classList.toggle('scrolled', window.scrollY > 20);
     }
 
-    // Scrollspy
     let currentSection = '';
     sections.forEach(section => {
       const sectionTop = section.offsetTop - 120;
@@ -129,7 +136,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // =========================================================================
   // 3. Falling Petals Generator
+  // =========================================================================
   const heroSection = document.querySelector('.hero');
   if (heroSection) {
     const petalContainer = document.createElement('div');
@@ -156,7 +165,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // =========================================================================
   // 4. Scroll Reveal Observer
+  // =========================================================================
   const revealEls = document.querySelectorAll('.reveal');
   const io = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -164,14 +175,15 @@ document.addEventListener('DOMContentLoaded', () => {
         entry.target.classList.add('visible');
       }
     });
-  }, { threshold: 0.12 });
+  }, { threshold: 0.08 });
 
   revealEls.forEach(el => io.observe(el));
 
+  // =========================================================================
   // 5. Modal Controllers
+  // =========================================================================
   const bookingModal = document.getElementById('bookingModal');
   const detailModal = document.getElementById('detailModal');
-  const closeModalBtns = document.querySelectorAll('.modal-close, .modal-overlay');
 
   function openModal(modal) {
     if (modal) {
@@ -187,16 +199,23 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  closeModalBtns.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      if (e.target === btn || btn.classList.contains('modal-close')) {
+  // Close on overlay click or close button
+  document.querySelectorAll('.modal-overlay').forEach(overlay => {
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) {
         closeModal(bookingModal);
         closeModal(detailModal);
       }
     });
   });
 
-  // Esc key to close modal
+  document.querySelectorAll('.modal-close').forEach(btn => {
+    btn.addEventListener('click', () => {
+      closeModal(bookingModal);
+      closeModal(detailModal);
+    });
+  });
+
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       closeModal(bookingModal);
@@ -204,34 +223,37 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // =========================================================================
   // 6. Open Treatment Detail Modal
-  const detailBtns = document.querySelectorAll('.btn-detail');
-  detailBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const treatmentKey = btn.dataset.treatment;
-      const data = treatmentsData[treatmentKey];
-      if (data) {
-        document.getElementById('detailTag').textContent = data.tag;
-        document.getElementById('detailTitle').textContent = data.title;
-        document.getElementById('detailPrice').textContent = data.price;
-        document.getElementById('detailDuration').textContent = `⏱️ ${data.duration}`;
-        document.getElementById('detailDesc').textContent = data.desc;
+  // =========================================================================
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.btn-detail');
+    if (!btn) return;
+    const treatmentKey = btn.dataset.treatment;
+    const data = treatmentsData[treatmentKey];
+    if (data) {
+      document.getElementById('detailTag').textContent = data.tag;
+      document.getElementById('detailTitle').textContent = data.title;
+      document.getElementById('detailPrice').textContent = data.price;
+      document.getElementById('detailDuration').textContent = `⏱️ ${data.duration}`;
+      document.getElementById('detailDesc').textContent = data.desc;
 
-        const stepsUl = document.getElementById('detailSteps');
-        stepsUl.innerHTML = data.steps.map(step => `<li>${step}</li>`).join('');
+      const stepsUl = document.getElementById('detailSteps');
+      stepsUl.innerHTML = data.steps.map(step => `<li>${step}</li>`).join('');
 
-        const bookBtn = document.getElementById('detailBookBtn');
-        bookBtn.onclick = () => {
-          closeModal(detailModal);
-          openBookingFor(data.title);
-        };
+      const bookBtn = document.getElementById('detailBookBtn');
+      bookBtn.onclick = () => {
+        closeModal(detailModal);
+        openBookingFor(data.title);
+      };
 
-        openModal(detailModal);
-      }
-    });
+      openModal(detailModal);
+    }
   });
 
+  // =========================================================================
   // 7. Booking Modal Logic & WhatsApp Link Generator
+  // =========================================================================
   const bookBtns = document.querySelectorAll('.btn-book-trigger');
   const bookingForm = document.getElementById('modalBookingForm');
   const bookingSelect = document.getElementById('modalTreatmentSelect');
@@ -239,7 +261,8 @@ document.addEventListener('DOMContentLoaded', () => {
   function openBookingFor(treatmentName) {
     if (bookingSelect && treatmentName) {
       for (let option of bookingSelect.options) {
-        if (option.text.includes(treatmentName) || option.value.includes(treatmentName.toLowerCase())) {
+        if (option.text.toLowerCase().includes(treatmentName.toLowerCase()) ||
+            option.value.toLowerCase().includes(treatmentName.toLowerCase())) {
           option.selected = true;
           break;
         }
@@ -249,7 +272,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   bookBtns.forEach(btn => {
-    btn.addEventListener('click', (e) => {
+    btn.addEventListener('click', () => {
       const treatment = btn.dataset.treatment || '';
       openBookingFor(treatment);
     });
@@ -265,20 +288,20 @@ document.addEventListener('DOMContentLoaded', () => {
       const time = document.getElementById('modalTime').value;
 
       if (!name || !date || !time) {
-        showToast('Please fill in all required booking fields.');
+        showToast('Sila isi semua maklumat tempahan.');
         return;
       }
 
-      const msg = `Hello Aisyah Luxe Spa! 🌸\n\nI would like to book a ritual:\n• Guest Name: ${name}\n• Contact: ${phone}\n• Treatment: ${treatment}\n• Preferred Date: ${date}\n• Preferred Time: ${time}\n\nPlease confirm availability. Thank you!`;
-
-      const whatsappUrl = `https://wa.me/60123456789?text=${encodeURIComponent(msg)}`;
-      window.open(whatsappUrl, '_blank');
+      const msg = `Assalamualaikum Aisyah Luxe Spa! 🌸\n\nSaya ingin membuat tempahan:\n• Nama: ${name}\n• No. Tel: ${phone}\n• Rawatan: ${treatment}\n• Tarikh: ${date}\n• Masa: ${time}\n\nSila sahkan ketersediaan slot. Terima kasih!`;
+      window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
       closeModal(bookingModal);
-      showToast('Opening WhatsApp with your booking details...');
+      showToast('Membuka WhatsApp dengan butiran tempahan anda...');
     });
   }
 
+  // =========================================================================
   // 8. Inline Contact Section Booking Form
+  // =========================================================================
   const inlineForm = document.getElementById('inlineBookingForm');
   if (inlineForm) {
     inlineForm.addEventListener('submit', (e) => {
@@ -287,17 +310,50 @@ document.addEventListener('DOMContentLoaded', () => {
       const date = document.getElementById('inlineDate').value;
       const time = document.getElementById('inlineTime').value;
 
-      let msg = `Hello Aisyah Luxe Spa! 🌸\n\nI would like to inquire/book a ritual:\n• Treatment: ${treatment}`;
-      if (date) msg += `\n• Date: ${date}`;
-      if (time) msg += `\n• Time: ${time}`;
+      let msg = `Assalamualaikum Aisyah Luxe Spa! 🌸\n\nSaya ingin bertanya / membuat tempahan:\n• Rawatan: ${treatment}`;
+      if (date) msg += `\n• Tarikh: ${date}`;
+      if (time) msg += `\n• Masa: ${time}`;
 
-      const whatsappUrl = `https://wa.me/60123456789?text=${encodeURIComponent(msg)}`;
-      window.open(whatsappUrl, '_blank');
-      showToast('Redirecting to WhatsApp booking...');
+      window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
+      showToast('Mengalihkan ke WhatsApp...');
     });
   }
 
-  // 9. Testimonial Slider Controls
+  // =========================================================================
+  // 9. Package Booking CTA
+  // =========================================================================
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.btn-pkg-book');
+    if (!btn) return;
+    const pkgName = btn.dataset.package || 'Package';
+    const msg = `Assalamualaikum Aisyah Luxe Spa! 🌸\n\nSaya berminat dengan *${pkgName}*.\n\nBoleh saya dapatkan maklumat lanjut dan tempahan? Terima kasih!`;
+    window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
+  });
+
+  // =========================================================================
+  // 10. Bekam Booking CTA
+  // =========================================================================
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.btn-bekam-book');
+    if (!btn) return;
+    const treatmentName = btn.dataset.bekam || 'Bekam';
+    const msg = `Assalamualaikum Aisyah Luxe Spa! 🌸\n\nSaya ingin membuat tempahan untuk *${treatmentName}*.\n\nSila maklumkan slot yang tersedia. Terima kasih!`;
+    window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
+  });
+
+  // =========================================================================
+  // 11. Flawless Facial Promo CTA
+  // =========================================================================
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.btn-promo');
+    if (!btn) return;
+    const msg = `Assalamualaikum Aisyah Luxe Spa! 🌸\n\nSaya berminat dengan *Promo Flawless Facial RM49*!\n\nBoleh saya dapatkan slot? Terima kasih!`;
+    window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
+  });
+
+  // =========================================================================
+  // 12. Testimonial Slider Controls
+  // =========================================================================
   const testiRow = document.querySelector('.testi-row');
   const prevBtn = document.getElementById('testiPrev');
   const nextBtn = document.getElementById('testiNext');
@@ -311,7 +367,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 10. Toast Notification System
+  // =========================================================================
+  // 13. Trust Badge Strip — clone for seamless scroll loop
+  // =========================================================================
+  const trustTrack = document.querySelector('.trust-track');
+  if (trustTrack) {
+    const items = trustTrack.innerHTML;
+    trustTrack.innerHTML = items + items;
+  }
+
+  // =========================================================================
+  // 14. Toast Notification System
+  // =========================================================================
   function showToast(message) {
     let toast = document.getElementById('toast');
     if (!toast) {
@@ -326,4 +393,5 @@ document.addEventListener('DOMContentLoaded', () => {
       toast.classList.remove('show');
     }, 3500);
   }
+
 });

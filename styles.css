@@ -1297,3 +1297,835 @@ footer .copy {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
 }
+
+/* ==========================================================================
+   NEW COMPONENTS — Real Business Data Integration
+   ========================================================================== */
+
+/* ---------- HERO MOTTO BADGE ---------- */
+.hero-motto-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--gold), #a8813d);
+  color: #fff;
+  font-family: 'Fraunces', serif;
+  font-size: 0.78rem;
+  font-style: italic;
+  letter-spacing: 0.06em;
+  padding: 6px 18px;
+  border-radius: 30px;
+  margin-bottom: 14px;
+  box-shadow: 0 4px 14px rgba(198,161,91,0.35);
+}
+
+/* ---------- TRUST BADGE STRIP ---------- */
+.trust-strip {
+  background: var(--green-deep);
+  overflow: hidden;
+  padding: 12px 0;
+  width: 100%;
+  position: relative;
+}
+
+.trust-track {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  white-space: nowrap;
+  animation: trustScroll 32s linear infinite;
+  width: max-content;
+}
+
+.trust-strip:hover .trust-track {
+  animation-play-state: paused;
+}
+
+@keyframes trustScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.trust-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--cream);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0 18px;
+  white-space: nowrap;
+}
+
+.trust-item svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  opacity: 0.85;
+}
+
+.trust-sep {
+  color: var(--gold);
+  font-size: 0.7rem;
+  padding: 0 4px;
+}
+
+/* ---------- FREE ANALYSIS BADGE ---------- */
+.free-analysis-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--gold), #b8912c);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.88rem;
+  padding: 8px 20px;
+  border-radius: 30px;
+  margin-top: 14px;
+  box-shadow: 0 4px 14px rgba(198,161,91,0.4);
+  letter-spacing: 0.02em;
+}
+
+/* ---------- PROMO SPOTLIGHT ---------- */
+.promo-section { padding: 70px 0; }
+
+.promo-card {
+  background: linear-gradient(135deg, #fff 0%, var(--cream) 60%, #f0e8d0 100%);
+  border: 2px solid var(--gold);
+  border-radius: var(--radius-lg);
+  padding: 44px 40px 40px;
+  position: relative;
+  box-shadow: 0 20px 60px -20px rgba(198,161,91,0.35), 0 4px 20px rgba(51,66,43,0.08);
+  overflow: hidden;
+}
+
+.promo-card::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 280px; height: 280px;
+  background: radial-gradient(circle, rgba(198,161,91,0.12) 0%, transparent 70%);
+  border-radius: 50%;
+  transform: translate(60px,-80px);
+}
+
+.promo-badge-top {
+  position: absolute;
+  top: -1px; left: 40px;
+  background: linear-gradient(135deg, var(--rose), #c98080);
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 6px 18px;
+  border-radius: 0 0 14px 14px;
+}
+
+.promo-inner {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 40px;
+  align-items: center;
+}
+
+.promo-title {
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  line-height: 1.1;
+  color: var(--green-deep);
+  margin: 8px 0 4px;
+}
+
+.promo-star { color: var(--gold); }
+
+.promo-subtitle {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--green);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin: 0 0 6px;
+}
+
+.promo-quote {
+  color: var(--ink-light);
+  font-size: 0.95rem;
+  margin: 0 0 20px;
+}
+
+.promo-benefits {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.promo-benefits li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.92rem;
+  color: var(--ink);
+}
+
+.promo-benefits li svg {
+  width: 20px; height: 20px;
+  flex-shrink: 0;
+  color: var(--green);
+}
+
+.promo-price-box {
+  background: var(--green-deep);
+  color: #fff;
+  border-radius: var(--radius-md);
+  padding: 32px 28px;
+  text-align: center;
+  min-width: 200px;
+  box-shadow: 0 16px 40px -10px rgba(51,66,43,0.5);
+}
+
+.promo-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+
+.promo-price {
+  font-family: 'Fraunces', serif;
+  font-size: 1.1rem;
+  line-height: 1;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+.promo-price span {
+  font-size: 3.6rem;
+  font-weight: 600;
+}
+
+.promo-price sup {
+  font-size: 1rem;
+  vertical-align: super;
+}
+
+.promo-validity {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.65);
+  margin: 8px 0 20px;
+  font-style: italic;
+}
+
+.btn-promo {
+  width: 100%;
+  gap: 8px;
+  justify-content: center;
+}
+
+.promo-trust-badges {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 14px;
+}
+
+.promo-trust-badges span {
+  font-size: 0.68rem;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.04em;
+}
+
+/* ---------- REMOVAL CARDS ---------- */
+.removal-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-top: 44px;
+}
+
+.removal-card {
+  background: var(--card);
+  border: 1.5px solid rgba(198,161,91,0.3);
+  border-radius: var(--radius-md);
+  padding: 28px 28px 24px;
+}
+
+.removal-card h4 {
+  font-family: 'Fraunces', serif;
+  font-size: 1.1rem;
+  color: var(--green-deep);
+  margin: 0 0 4px;
+}
+
+.removal-note {
+  font-size: 0.8rem;
+  color: var(--ink-light);
+  margin: 0 0 16px;
+  font-style: italic;
+}
+
+.removal-prices { display: flex; flex-direction: column; gap: 10px; }
+
+.removal-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed rgba(198,161,91,0.25);
+  font-size: 0.9rem;
+  color: var(--ink);
+}
+
+.removal-row:last-child { border-bottom: none; padding-bottom: 0; }
+
+.removal-price {
+  font-weight: 700;
+  color: var(--green-deep);
+  font-family: 'Fraunces', serif;
+  font-size: 1rem;
+}
+
+/* ---------- PACKAGES GRID ---------- */
+#packages { padding: 70px 0; }
+
+.packages-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+  margin-top: 44px;
+}
+
+.pkg-card {
+  background: var(--card);
+  border: 1.5px solid rgba(154,174,133,0.4);
+  border-radius: var(--radius-lg);
+  padding: 28px 28px 24px;
+  position: relative;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.pkg-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+.pkg-featured {
+  border-color: var(--gold);
+  background: linear-gradient(135deg, #fff 0%, #fdf8ed 100%);
+  box-shadow: 0 12px 36px -10px rgba(198,161,91,0.25);
+}
+
+.pkg-featured-badge {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, var(--gold), #a8813d);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 5px 16px;
+  border-radius: 30px;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(198,161,91,0.4);
+}
+
+.pkg-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 20px;
+}
+
+.pkg-pore  { background: rgba(154,174,133,0.15); }
+.pkg-pigment { background: rgba(217,169,160,0.15); }
+.pkg-acne  { background: rgba(51, 66, 43, 0.08); }
+.pkg-luxe  { background: rgba(198,161,91,0.12); }
+
+.pkg-icon {
+  width: 44px; height: 44px;
+  background: var(--green-deep);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  color: var(--cream);
+}
+
+.pkg-icon svg { width: 22px; height: 22px; }
+
+.pkg-header h3 {
+  font-size: 1.15rem;
+  margin: 0 0 6px;
+}
+
+.pkg-badges {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.pkg-price-tag {
+  background: var(--green-deep);
+  color: var(--cream);
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 3px 12px;
+  border-radius: 20px;
+  font-family: 'Fraunces', serif;
+}
+
+.pkg-discount {
+  background: var(--rose);
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 3px 10px;
+  border-radius: 20px;
+  text-transform: uppercase;
+}
+
+.pkg-items {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pkg-items li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: var(--ink);
+}
+
+.pkg-items li svg {
+  width: 18px; height: 18px;
+  flex-shrink: 0;
+  color: var(--green);
+}
+
+.pkg-items li span {
+  margin-left: auto;
+  font-size: 0.8rem;
+  color: var(--ink-light);
+  font-weight: 600;
+}
+
+.pkg-free {
+  background: linear-gradient(135deg, rgba(198,161,91,0.15), rgba(198,161,91,0.05));
+  border: 1px dashed var(--gold);
+  border-radius: var(--radius-sm);
+  text-align: center;
+  padding: 8px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--gold);
+  margin-bottom: 16px;
+  letter-spacing: 0.04em;
+}
+
+.btn-pkg-book {
+  width: 100%;
+  justify-content: center;
+}
+
+/* Brand Quote Block */
+.brand-quote {
+  text-align: center;
+  padding: 44px 24px 0;
+}
+
+.brand-quote .quote-icon {
+  width: 36px; height: 36px;
+  fill: var(--rose);
+  opacity: 0.6;
+  margin-bottom: 16px;
+}
+
+.brand-quote blockquote {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  color: var(--green-deep);
+  font-style: italic;
+  margin: 0 auto 12px;
+  max-width: 600px;
+  line-height: 1.55;
+}
+
+.brand-quote cite {
+  font-size: 0.9rem;
+  color: var(--ink-light);
+  font-style: normal;
+}
+
+/* ---------- BEKAM THERAPY SECTION ---------- */
+#bekam { padding: 70px 0; }
+
+.bekam-motto {
+  font-family: 'Fraunces', serif;
+  font-size: 1.1rem;
+  color: var(--green);
+  margin-top: 8px;
+}
+
+.bekam-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+  margin-top: 44px;
+}
+
+.bekam-col {
+  background: var(--card);
+  border: 1.5px solid rgba(154,174,133,0.4);
+  border-radius: var(--radius-lg);
+  padding: 0 0 24px;
+  overflow: hidden;
+}
+
+.bekam-col-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 20px 24px;
+  margin-bottom: 8px;
+}
+
+.bekam-col-header svg {
+  width: 28px; height: 28px;
+  flex-shrink: 0;
+}
+
+.bekam-col-header h3 {
+  font-size: 1.15rem;
+  margin: 0;
+}
+
+.bekam-darah-hdr {
+  background: linear-gradient(135deg, rgba(217,169,160,0.2), rgba(217,169,160,0.05));
+  color: var(--rose);
+}
+
+.bekam-darah-hdr svg { color: var(--rose); }
+
+.bekam-khas-hdr {
+  background: linear-gradient(135deg, rgba(154,174,133,0.2), rgba(154,174,133,0.05));
+  color: var(--green);
+}
+
+.bekam-khas-hdr svg { color: var(--green); }
+
+.bekam-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 0 24px;
+  margin-bottom: 20px;
+}
+
+.bekam-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(198,161,91,0.15);
+}
+
+.bekam-item:last-child { border-bottom: none; }
+
+.bekam-item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.bekam-item-info strong {
+  font-size: 0.88rem;
+  color: var(--green-deep);
+  font-weight: 700;
+}
+
+.bekam-item-info small {
+  font-size: 0.75rem;
+  color: var(--ink-light);
+  font-style: italic;
+}
+
+.bekam-price {
+  font-family: 'Fraunces', serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--green-deep);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.btn-bekam-book {
+  margin: 0 24px;
+  width: calc(100% - 48px);
+  justify-content: center;
+}
+
+/* Pakej Jimat */
+.bekam-pakej {
+  background: linear-gradient(135deg, var(--green-deep), #4a5e3a);
+  border-radius: var(--radius-lg);
+  padding: 36px 36px 28px;
+  margin-top: 32px;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+.bekam-pakej::before {
+  content: '';
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 200px; height: 200px;
+  background: rgba(255,255,255,0.04);
+  border-radius: 50%;
+}
+
+.bekam-pakej-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.bekam-pakej-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.bekam-pakej-icon {
+  font-size: 2.8rem;
+  line-height: 1;
+}
+
+.bekam-pakej-left h3 {
+  color: var(--gold);
+  font-size: 1.2rem;
+  margin: 0 0 4px;
+}
+
+.bekam-pakej-sub {
+  color: rgba(255,255,255,0.65);
+  font-size: 0.82rem;
+  margin: 0;
+  font-style: italic;
+}
+
+.bekam-pakej-right {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.bekam-pakej-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.bekam-pakej-badge {
+  background: var(--gold);
+  color: var(--green-deep);
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: 20px;
+  letter-spacing: 0.04em;
+}
+
+.bekam-pakej-orig {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.55);
+  margin-bottom: 12px;
+}
+
+.bekam-pakej-includes {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.bekam-pakej-includes li {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.8);
+}
+
+.bekam-pakej-price {
+  font-family: 'Fraunces', serif;
+  font-size: 2.6rem;
+  font-weight: 600;
+  color: var(--gold);
+  line-height: 1;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.bekam-pakej-price span {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.6);
+  text-transform: uppercase;
+  font-family: 'Nunito Sans', sans-serif;
+  margin-top: 4px;
+}
+
+.bekam-pakej .btn-bekam-book {
+  background: var(--gold);
+  color: var(--green-deep);
+  border-color: var(--gold);
+  margin: 0;
+  width: auto;
+  font-weight: 700;
+}
+
+.bekam-pakej .btn-bekam-book:hover {
+  background: #b8912c;
+  border-color: #b8912c;
+  color: #fff;
+}
+
+/* Bekam Trust Badges */
+.bekam-trust {
+  margin-top: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: center;
+}
+
+.bekam-guarantee {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(154,174,133,0.15);
+  border: 1.5px solid rgba(154,174,133,0.4);
+  border-radius: var(--radius-sm);
+  padding: 12px 20px;
+  font-size: 0.88rem;
+  color: var(--green-deep);
+  width: 100%;
+  max-width: 600px;
+}
+
+.bekam-guarantee svg {
+  width: 22px; height: 22px;
+  flex-shrink: 0;
+  color: var(--green);
+}
+
+.bekam-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.bekam-badges span {
+  background: var(--card);
+  border: 1px solid rgba(154,174,133,0.3);
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+/* ---------- FOOTER MOTTO ---------- */
+.footer-motto {
+  color: var(--gold);
+  font-family: 'Fraunces', serif;
+  font-size: 1rem;
+  margin: 8px 0 0;
+  text-align: center;
+}
+
+/* ---------- RESPONSIVE: NEW SECTIONS ---------- */
+@media (max-width: 860px) {
+  .promo-inner {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .promo-price-box {
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  .packages-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bekam-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .removal-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bekam-pakej-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .bekam-pakej-right {
+    width: 100%;
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 540px) {
+  .promo-card {
+    padding: 36px 20px 28px;
+  }
+
+  .promo-badge-top {
+    left: 20px;
+  }
+
+  .pkg-card {
+    padding: 22px 20px 20px;
+  }
+
+  .bekam-pakej {
+    padding: 28px 20px 22px;
+  }
+
+  .trust-item {
+    font-size: 0.75rem;
+    padding: 0 12px;
+  }
+}
