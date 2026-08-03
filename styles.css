@@ -180,22 +180,30 @@ header.nav.scrolled {
 .logo {
   display: flex;
   align-items: center;
-  gap: 12px;
-  font-family: 'Fraunces', serif;
-  font-size: 1.35rem;
-  color: var(--green-deep);
+  gap: 0;
   text-decoration: none;
-  font-weight: 600;
+  flex-shrink: 0;
 }
 
-.logo svg {
-  width: 34px;
-  height: 34px;
-  transition: transform 0.3s ease;
+.logo-img {
+  height: 48px;
+  width: 48px;
+  object-fit: contain;
+  border-radius: 8px;
+  display: block;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.logo:hover svg {
-  transform: rotate(15deg);
+.logo-img:hover {
+  transform: scale(1.06);
+  box-shadow: 0 4px 16px rgba(51,66,43,0.18);
+}
+
+.logo-img--footer {
+  height: 100px;
+  width: 100px;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(51,66,43,0.18);
 }
 
 nav.links {
