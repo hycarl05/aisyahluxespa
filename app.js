@@ -394,4 +394,194 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 3500);
   }
 
+  // =========================================================================
+  // 15. Gallery — Auto-Advancing Swipeable Stacked Cards
+  // =========================================================================
+  (function initStackedGallery() {
+    const stack        = document.getElementById('skgStack');
+    const dotsWrap     = document.getElementById('skgDots');
+    const prevBtn      = document.getElementById('skgPrev');
+    const nextBtn      = document.getElementById('skgNext');
+    const curEl        = document.getElementById('skgCur');
+    const totEl        = document.getElementById('skgTot');
+    const progressFill = document.getElementById('skgProgressFill');
+
+    if (!stack) return;
+
+    const AUTOPLAY_MS    = 3000;
+    const DRAG_THRESHOLD = 85;
+    const reducedMotion  = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // order[0] = current top card
+    let order = Array.from(stack.querySelectorAll('.skg-card'));
+    const total = order.length;
+    const depthRotation = [0, -5, 4, -3, 3, -2, 2];
+
+    if (totEl) totEl.textContent = total;
+
+    // ---- Build dots ----
+    order.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.className = 'skg-dot' + (i === 0 ? ' active' : '');
+      dot.setAttribute('aria-label', 'Foto ' + (i + 1));
+      dot.addEventListener('click', () => {
+        const target = originalCards[i];
+        const pos    = order.indexOf(target);
+        if (pos === 0) return;
+        let steps = pos;
+        (function cycleNext() {
+          if (steps <= 0) { startAutoplay(); return; }
+          sendTopToBack(-1, false);
+          steps--;
+          setTimeout(cycleNext, 80);
+        })();
+      });
+      dotsWrap.appendChild(dot);
+    });
+
+    const originalCards = [...order];
+    const dots = Array.from(dotsWrap.querySelectorAll('.skg-dot'));
+
+    // ---- Layout ----
+    function layout() {
+      order.forEach((card, i) => {
+        card.style.zIndex     = total - i;
+        card.style.opacity    = i < 5 ? '1' : '0';
+        card.classList.toggle('is-top', i === 0);
+        card.style.transition = 'transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.4s ease, box-shadow 0.3s ease';
+        card.style.transform  =
+          `translate(-50%, -50%) translateY(${i * 12}px) scale(${1 - i * 0.04}) rotate(${depthRotation[i] || 0}deg)`;
+      });
+      updateMeta();
+    }
+
+    function updateMeta() {
+      const origIdx = originalCards.indexOf(order[0]);
+      if (curEl) curEl.textContent = origIdx + 1;
+      dots.forEach((d, i) => d.classList.toggle('active', i === origIdx));
+    }
+
+    layout();
+
+    // ---- Progress bar ----
+    function resetProgress() {
+      if (!progressFill) return;
+      progressFill.style.animation = 'none';
+      void progressFill.offsetWidth; // force reflow
+      progressFill.style.animation = `skgFillBar ${AUTOPLAY_MS}ms linear forwards`;
+    }
+
+    function clearProgress() {
+      if (!progressFill) return;
+      progressFill.style.animation = 'none';
+      progressFill.style.width = '0%';
+    }
+
+    // ---- Autoplay ----
+    let autoTimer = null;
+    let busy      = false;
+
+    function startAutoplay() {
+      if (reducedMotion) return;
+      stopAutoplay();
+      resetProgress();
+      autoTimer = setInterval(() => {
+        if (!busy) sendTopToBack(-1);
+      }, AUTOPLAY_MS);
+    }
+
+    function stopAutoplay() {
+      clearInterval(autoTimer);
+      autoTimer = null;
+      clearProgress();
+    }
+
+    // ---- Send top card to back (fly off) ----
+    function sendTopToBack(direction, animate = true) {
+      if (busy && animate) return;
+      const card = order[0];
+      if (animate) {
+        busy = true;
+        card.style.transition = 'transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.4s ease';
+        card.style.transform  = `translate(-50%, -50%) translateX(${direction * 560}px) rotate(${direction * 28}deg)`;
+        card.style.opacity    = '0';
+        card.classList.remove('is-top');
+        setTimeout(() => {
+          order.push(order.shift());
+          card.style.transition = 'none';
+          card.style.opacity    = '1';
+          layout();
+          requestAnimationFrame(() => { card.style.transition = ''; });
+          busy = false;
+        }, 370);
+      } else {
+        order.push(order.shift());
+        card.style.transition = 'none';
+        card.style.opacity    = '1';
+        layout();
+      }
+    }
+
+    // ---- Bring last card back to front (prev) ----
+    function bringBackToFront() {
+      if (busy) return;
+      const card = order.pop();
+      order.unshift(card);
+      card.style.transition = 'none';
+      card.style.opacity    = '1';
+      card.style.zIndex     = total + 1;
+      card.style.transform  = `translate(-50%, -50%) translateX(560px) rotate(28deg)`;
+      requestAnimationFrame(() => {
+        card.style.transition = 'transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.4s ease';
+        layout();
+      });
+    }
+
+    // ---- Pointer drag ----
+    let dragging = false, startX = 0, currentX = 0, dragCard = null;
+
+    stack.addEventListener('pointerdown', (e) => {
+      const topCard = order[0];
+      if (e.target.closest('.skg-card') !== topCard) return;
+      dragging = true;
+      dragCard = topCard;
+      startX   = e.clientX;
+      topCard.setPointerCapture(e.pointerId);
+      topCard.style.transition = 'none';
+      stopAutoplay(); // pause while dragging
+    });
+
+    stack.addEventListener('pointermove', (e) => {
+      if (!dragging) return;
+      currentX = e.clientX - startX;
+      dragCard.style.transform =
+        `translate(-50%, -50%) translateX(${currentX}px) rotate(${currentX * 0.07}deg)`;
+    });
+
+    function endDrag() {
+      if (!dragging) return;
+      dragging = false;
+      dragCard.style.transition = 'transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.4s ease';
+      if (Math.abs(currentX) > DRAG_THRESHOLD) {
+        sendTopToBack(currentX > 0 ? 1 : -1);
+      } else {
+        layout(); // snap back
+      }
+      currentX = 0;
+      dragCard  = null;
+      startAutoplay(); // resume fresh cycle
+    }
+
+    stack.addEventListener('pointerup',     endDrag);
+    stack.addEventListener('pointercancel', endDrag);
+
+    // ---- Button controls ----
+    nextBtn.addEventListener('click', () => { sendTopToBack(-1); startAutoplay(); });
+    prevBtn.addEventListener('click', () => { bringBackToFront(); startAutoplay(); });
+
+    // ---- Kick off ----
+    startAutoplay();
+
+  })();
+
 });

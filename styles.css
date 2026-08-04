@@ -842,32 +842,281 @@ section {
   margin-top: 2px;
 }
 
-/* ---------- GALLERY ---------- */
-.gallery-grid {
+/* ---------- GALLERY — STACKED CARDS ---------- */
+
+/* Two-column layout: stack left, side panel right */
+.skg-layout {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: 1fr 260px;
+  gap: 60px;
+  align-items: center;
+  padding-bottom: 40px;
+}
+
+/* ---- Stack ---- */
+.skg-stack {
+  position: relative;
+  width: 320px;
+  height: 420px;
+  margin: 0 auto;
+}
+
+.skg-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 320px;
+  height: 420px;
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 28px 55px -22px rgba(51, 66, 43, 0.45);
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+  /* default (overridden by JS) — start centered */
+  transform: translate(-50%, -50%);
+  transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1),
+              opacity  0.4s ease,
+              box-shadow 0.3s ease;
+}
+
+.skg-card:active { cursor: grabbing; }
+
+.skg-card img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+  border-radius: 22px;
+}
+
+/* Gradient vignette on each card */
+.skg-overlay {
+  position: absolute;
+  inset: 0;
+  border-radius: 22px;
+  background: linear-gradient(
+    to top,
+    rgba(51, 66, 43, 0.62) 0%,
+    rgba(51, 66, 43, 0.1) 45%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+/* Caption label at the bottom of the top card */
+.skg-label {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(51, 66, 43, 0.72);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: var(--cream);
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  letter-spacing: 0.4px;
+  padding: 9px 22px;
+  border-radius: 100px;
+  white-space: nowrap;
+  border: 1px solid rgba(198, 161, 91, 0.35);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease 0.2s;
+  z-index: 10;
+}
+
+/* Show label only on the top (active) card — toggled by JS via class */
+.skg-card.is-top .skg-label { opacity: 1; }
+
+/* ---- Side Panel ---- */
+.skg-side {
+  display: flex;
+  flex-direction: column;
   gap: 20px;
 }
 
-.gallery-grid .img-frame:nth-child(1) {
-  grid-column: span 2;
-  grid-row: span 2;
-  aspect-ratio: 1/1;
+.skg-counter {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  font-family: 'Fraunces', serif;
 }
 
-.gallery-grid .img-frame {
-  aspect-ratio: 1/1;
+.skg-count-cur {
+  font-size: 3.5rem;
+  font-weight: 500;
+  color: var(--green-deep);
+  line-height: 1;
 }
 
-@media (max-width: 760px) {
-  .gallery-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .gallery-grid .img-frame:nth-child(1) {
-    grid-column: span 2;
-    aspect-ratio: 16/10;
-  }
+.skg-count-sep {
+  font-size: 1.6rem;
+  color: var(--green-soft);
 }
+
+.skg-count-tot {
+  font-size: 1.6rem;
+  color: var(--green-soft);
+  font-weight: 500;
+}
+
+/* Progress bar (autoplay) */
+.skg-progress {
+  width: 100%;
+  height: 3px;
+  background: rgba(110, 138, 98, 0.18);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.skg-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--green-soft), var(--gold));
+  border-radius: 3px;
+}
+
+@keyframes skgFillBar {
+  from { width: 0%; }
+  to   { width: 100%; }
+}
+
+.skg-hint {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  color: var(--green);
+  font-size: 0.95rem;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.skg-drag-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(110, 138, 98, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--green);
+  animation: skgRock 2.5s ease-in-out infinite;
+}
+
+.skg-drag-icon svg { width: 28px; height: 28px; }
+
+@keyframes skgRock {
+  0%, 100% { transform: rotate(-8deg); }
+  50%       { transform: rotate(8deg); }
+}
+
+/* Buttons */
+.skg-controls {
+  display: flex;
+  gap: 12px;
+}
+
+.skg-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1.5px solid var(--green-soft);
+  background: var(--card);
+  color: var(--green-deep);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px -10px rgba(51, 66, 43, 0.2);
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.skg-btn:hover {
+  transform: translateY(-3px);
+  border-color: var(--green);
+  background: rgba(110, 138, 98, 0.08);
+}
+
+.skg-btn:active { transform: scale(0.93); }
+
+.skg-btn svg { width: 18px; height: 18px; }
+
+/* Primary (next) button — filled */
+.skg-btn--primary {
+  background: var(--green);
+  border-color: var(--green);
+  color: var(--cream);
+  box-shadow: 0 12px 28px -12px rgba(110, 138, 98, 0.55);
+}
+
+.skg-btn--primary:hover {
+  background: var(--green-deep);
+  border-color: var(--green-deep);
+}
+
+/* Dots */
+.skg-dots {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+  max-width: 160px;
+}
+
+.skg-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--cream-deep);
+  border: 1.5px solid var(--green-soft);
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.25s ease, transform 0.25s ease, width 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.skg-dot.active {
+  background: var(--gold);
+  border-color: var(--gold);
+  width: 20px;
+  border-radius: 10px;
+}
+
+.skg-dot:hover:not(.active) {
+  background: var(--green-soft);
+  transform: scale(1.25);
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 900px) {
+  .skg-layout {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    justify-items: center;
+  }
+  .skg-side {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+  }
+  .skg-counter { order: -1; width: 100%; justify-content: center; }
+  .skg-hint    { width: 100%; text-align: center; }
+  .skg-drag-icon { display: none; }
+  .skg-dots    { justify-content: center; max-width: none; }
+}
+
+@media (max-width: 480px) {
+  .skg-stack  { width: 280px; height: 370px; }
+  .skg-card   { width: 280px; height: 370px; }
+}
+
+
 
 /* ---------- CONTACT / BOOKING PANEL ---------- */
 .contact {

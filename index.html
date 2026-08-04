@@ -707,56 +707,91 @@
   <circle cx="800" cy="25" r="4" fill="#C6A15B"/>
 </svg>
 
-<!-- ============ GALLERY ============ -->
+<!-- ============ GALLERY — STACKED CARDS ============ -->
 <section id="gallery">
   <div class="container">
     <div class="section-head reveal">
       <span class="eyebrow" style="justify-content:center;">Di Dalam Spa</span>
       <h2>A Peek Into Our Sanctuary</h2>
+      <p>Sekilas pandang suasana eksklusif Aisyah Luxe Spa. Seret kad atau guna anak panah untuk lihat lebih lagi.</p>
     </div>
-    <div class="gallery-grid reveal">
 
-      <div class="img-frame">
-        <img src="images/gallery_reception.png" alt="Aisyah Luxe Spa Reception Lounge" loading="lazy">
-        <div class="cap-tag">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/></svg>
-          <span>Reception &amp; lounge</span>
+    <!-- Stacked Card Gallery -->
+    <div class="skg-layout reveal">
+
+      <!-- Stack -->
+      <div class="skg-stack" id="skgStack">
+
+        <div class="skg-card" data-label="✦ Rawatan Premium">
+          <img src="images/gallery1.jpeg" alt="Aisyah Luxe Spa — Rawatan Premium" loading="lazy">
+          <div class="skg-label">✦ Rawatan Premium</div>
+          <div class="skg-overlay"></div>
         </div>
+
+        <div class="skg-card" data-label="✦ Facial Profesional">
+          <img src="images/gallery2.jpg" alt="Aisyah Luxe Spa — Facial Profesional" loading="lazy">
+          <div class="skg-label">✦ Facial Profesional</div>
+          <div class="skg-overlay"></div>
+        </div>
+
+        <div class="skg-card" data-label="✦ Sesi Penjagaan Kulit">
+          <img src="images/gallery3.jpg" alt="Aisyah Luxe Spa — Sesi Penjagaan Kulit" loading="lazy">
+          <div class="skg-label">✦ Sesi Penjagaan Kulit</div>
+          <div class="skg-overlay"></div>
+        </div>
+
+        <div class="skg-card" data-label="✦ Persekitaran Tenang">
+          <img src="images/gallery4.jpg" alt="Aisyah Luxe Spa — Persekitaran Tenang" loading="lazy">
+          <div class="skg-label">✦ Persekitaran Tenang</div>
+          <div class="skg-overlay"></div>
+        </div>
+
+        <div class="skg-card" data-label="✦ Rawatan Kecantikan">
+          <img src="images/gallery5.jpg" alt="Aisyah Luxe Spa — Rawatan Kecantikan" loading="lazy">
+          <div class="skg-label">✦ Rawatan Kecantikan</div>
+          <div class="skg-overlay"></div>
+        </div>
+
+        <div class="skg-card" data-label="✦ Suasana Mewah">
+          <img src="images/gallery6.jpg" alt="Aisyah Luxe Spa — Suasana Mewah" loading="lazy">
+          <div class="skg-label">✦ Suasana Mewah</div>
+          <div class="skg-overlay"></div>
+        </div>
+
+        <div class="skg-card" data-label="✦ Pengalaman Signature">
+          <img src="images/gallery7.jpg" alt="Aisyah Luxe Spa — Pengalaman Signature" loading="lazy">
+          <div class="skg-label">✦ Pengalaman Signature</div>
+          <div class="skg-overlay"></div>
+        </div>
+
+      </div><!-- /skg-stack -->
+
+      <!-- Side panel -->
+      <div class="skg-side">
+        <div class="skg-counter">
+          <span class="skg-count-cur" id="skgCur">1</span>
+          <span class="skg-count-sep">/</span>
+          <span class="skg-count-tot" id="skgTot">7</span>
+        </div>
+        <div class="skg-progress"><div class="skg-progress-fill" id="skgProgressFill"></div></div>
+        <p class="skg-hint">Auto-swipe setiap 3s · seret untuk skip</p>
+        <div class="skg-drag-icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48" fill="none">
+            <path d="M14 24h20M14 24l6-6M14 24l6 6M34 24l-6-6M34 24l-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="skg-controls">
+          <button class="skg-btn" id="skgPrev" aria-label="Sebelumnya">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <button class="skg-btn skg-btn--primary" id="skgNext" aria-label="Seterusnya">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+        <div class="skg-dots" id="skgDots"></div>
       </div>
 
-      <div class="img-frame">
-        <img src="images/gallery_massage.png" alt="Aisyah Luxe Spa Massage Suite" loading="lazy">
-        <div class="cap-tag">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 12h16"/></svg>
-          <span>Massage suite</span>
-        </div>
-      </div>
-
-      <div class="img-frame">
-        <img src="images/signature_bath.png" alt="Aisyah Luxe Spa Petal Bath" loading="lazy">
-        <div class="cap-tag">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="6"/></svg>
-          <span>Petal bath</span>
-        </div>
-      </div>
-
-      <div class="img-frame">
-        <img src="images/gallery_botanicals.png" alt="Aisyah Luxe Spa Botanicals Bar" loading="lazy">
-        <div class="cap-tag">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 18l12-12"/></svg>
-          <span>Botanicals bar</span>
-        </div>
-      </div>
-
-      <div class="img-frame">
-        <img src="images/gallery_tea.png" alt="Aisyah Luxe Spa Herbal Tea Corner" loading="lazy">
-        <div class="cap-tag">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/></svg>
-          <span>Tea corner</span>
-        </div>
-      </div>
-
-    </div>
+    </div><!-- /skg-layout -->
   </div>
 </section>
 
