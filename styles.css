@@ -844,12 +844,12 @@ section {
 
 /* ---------- GALLERY — STACKED CARDS ---------- */
 
-/* Two-column layout: stack left, side panel right */
+/* Single column centered layout for cards stack */
 .skg-layout {
-  display: grid;
-  grid-template-columns: 1fr 260px;
-  gap: 60px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  gap: 36px;
   padding-bottom: 40px;
 }
 
@@ -935,16 +935,21 @@ section {
 /* Show label only on the top (active) card — toggled by JS via class */
 .skg-card.is-top .skg-label { opacity: 1; }
 
-/* ---- Side Panel ---- */
+/* ---- Bottom Info Panel ---- */
 .skg-side {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  align-items: center;
+  text-align: center;
+  gap: 14px;
+  max-width: 320px;
+  width: 100%;
 }
 
 .skg-counter {
   display: flex;
   align-items: baseline;
+  justify-content: center;
   gap: 6px;
   font-family: 'Fraunces', serif;
 }
@@ -970,6 +975,7 @@ section {
 /* Progress bar (autoplay) */
 .skg-progress {
   width: 100%;
+  max-width: 240px;
   height: 3px;
   background: rgba(110, 138, 98, 0.18);
   border-radius: 3px;
@@ -998,8 +1004,8 @@ section {
 }
 
 .skg-drag-icon {
-  width: 52px;
-  height: 52px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   background: rgba(110, 138, 98, 0.1);
   display: flex;
@@ -1009,55 +1015,11 @@ section {
   animation: skgRock 2.5s ease-in-out infinite;
 }
 
-.skg-drag-icon svg { width: 28px; height: 28px; }
+.skg-drag-icon svg { width: 24px; height: 24px; }
 
 @keyframes skgRock {
   0%, 100% { transform: rotate(-8deg); }
   50%       { transform: rotate(8deg); }
-}
-
-/* Buttons */
-.skg-controls {
-  display: flex;
-  gap: 12px;
-}
-
-.skg-btn {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  border: 1.5px solid var(--green-soft);
-  background: var(--card);
-  color: var(--green-deep);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 8px 20px -10px rgba(51, 66, 43, 0.2);
-  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
-}
-
-.skg-btn:hover {
-  transform: translateY(-3px);
-  border-color: var(--green);
-  background: rgba(110, 138, 98, 0.08);
-}
-
-.skg-btn:active { transform: scale(0.93); }
-
-.skg-btn svg { width: 18px; height: 18px; }
-
-/* Primary (next) button — filled */
-.skg-btn--primary {
-  background: var(--green);
-  border-color: var(--green);
-  color: var(--cream);
-  box-shadow: 0 12px 28px -12px rgba(110, 138, 98, 0.55);
-}
-
-.skg-btn--primary:hover {
-  background: var(--green-deep);
-  border-color: var(--green-deep);
 }
 
 /* Dots */
@@ -1065,7 +1027,8 @@ section {
   display: flex;
   gap: 7px;
   flex-wrap: wrap;
-  max-width: 160px;
+  justify-content: center;
+  max-width: 200px;
 }
 
 .skg-dot {
@@ -1092,25 +1055,6 @@ section {
 }
 
 /* ---- Responsive ---- */
-@media (max-width: 900px) {
-  .skg-layout {
-    grid-template-columns: 1fr;
-    gap: 36px;
-    justify-items: center;
-  }
-  .skg-side {
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-  }
-  .skg-counter { order: -1; width: 100%; justify-content: center; }
-  .skg-hint    { width: 100%; text-align: center; }
-  .skg-drag-icon { display: none; }
-  .skg-dots    { justify-content: center; max-width: none; }
-}
-
 @media (max-width: 480px) {
   .skg-stack  { width: 280px; height: 370px; }
   .skg-card   { width: 280px; height: 370px; }
@@ -2381,8 +2325,9 @@ footer .copy {
     padding: 28px 20px 22px;
   }
 
-  .trust-item {
-    font-size: 0.75rem;
-    padding: 0 12px;
-  }
-}
+
+
+
+
+
+

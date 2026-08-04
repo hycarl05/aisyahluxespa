@@ -400,8 +400,6 @@ document.addEventListener('DOMContentLoaded', () => {
   (function initStackedGallery() {
     const stack        = document.getElementById('skgStack');
     const dotsWrap     = document.getElementById('skgDots');
-    const prevBtn      = document.getElementById('skgPrev');
-    const nextBtn      = document.getElementById('skgNext');
     const curEl        = document.getElementById('skgCur');
     const totEl        = document.getElementById('skgTot');
     const progressFill = document.getElementById('skgProgressFill');
@@ -574,10 +572,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     stack.addEventListener('pointerup',     endDrag);
     stack.addEventListener('pointercancel', endDrag);
-
-    // ---- Button controls ----
-    nextBtn.addEventListener('click', () => { sendTopToBack(-1); startAutoplay(); });
-    prevBtn.addEventListener('click', () => { bringBackToFront(); startAutoplay(); });
 
     // ---- Kick off ----
     startAutoplay();
