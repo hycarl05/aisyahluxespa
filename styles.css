@@ -230,6 +230,18 @@ nav.links a {
   padding-bottom: 4px;
 }
 
+nav.links a i {
+  margin-right: 6px;
+  font-size: 0.85em;
+  opacity: 0.75;
+}
+
+.mobile-menu a i {
+  margin-right: 8px;
+  width: 18px;
+  text-align: center;
+}
+
 nav.links a::after {
   content: '';
   position: absolute;
