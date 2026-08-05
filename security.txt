@@ -1,0 +1,6 @@
+Contact: mailto:aisyahluxespa@gmail.com
+Contact: https://wa.me/601171127820
+Expires: 2027-12-31T23:59:59.000Z
+Preferred-Languages: ms, en
+Canonical: https://aisyahluxespa.com/.well-known/security.txt
+Policy: https://aisyahluxespa.com/privacy

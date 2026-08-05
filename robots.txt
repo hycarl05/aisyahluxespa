@@ -1,6 +1,13 @@
 User-agent: *
 Allow: /
-Disallow: /images/
+Allow: /images/
+Allow: /styles.css
+Allow: /app.js
+Allow: /manifest.json
+Allow: /sitemap.xml
+Disallow: /.git/
+Disallow: /reviews-schema.json
+Disallow: /security.txt
 
 Sitemap: https://aisyahluxespa.com/sitemap.xml
 

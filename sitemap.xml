@@ -72,4 +72,37 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- ====== PRIVACY POLICY ====== -->
+  <url>
+    <loc>https://aisyahluxespa.com/privacy.html</loc>
+    <lastmod>2026-08-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- ====== KEY IMAGES (Google Image Search) ====== -->
+  <url>
+    <loc>https://aisyahluxespa.com/images/logo.jpg</loc>
+    <lastmod>2026-08-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <image:image>
+      <image:loc>https://aisyahluxespa.com/images/logo.jpg</image:loc>
+      <image:title>Aisyah Luxe Spa Logo — Spa Muslimah Kuala Krai</image:title>
+      <image:caption>Logo rasmi Aisyah Luxe Spa Kuala Krai, Kelantan</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://aisyahluxespa.com/images/signature_bath.png</loc>
+    <lastmod>2026-08-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <image:image>
+      <image:loc>https://aisyahluxespa.com/images/signature_bath.png</image:loc>
+      <image:title>Aisyah Luxe Spa Signature Bath — Rawatan Premium</image:title>
+      <image:caption>Rawatan signature bath di Aisyah Luxe Spa Kuala Krai</image:caption>
+    </image:image>
+  </url>
+
 </urlset>

@@ -1,0 +1,12 @@
+/* TEAM */
+  Owner: Aisyah Luxe Spa
+  Contact: 011-71127820
+  Instagram: @aisyahluxespa
+  Location: Laman Firdaus, Kuala Krai, Kelantan, Malaysia
+
+/* SITE */
+  Last update: 2026-08-05
+  Language: Malay (ms)
+  Standards: HTML5, CSS3, JavaScript (ES6+)
+  Components: Custom vanilla JS, no frameworks
+  Hosting: Shared hosting (Apache)
