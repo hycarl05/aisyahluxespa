@@ -324,6 +324,7 @@
       </a>
       <nav class="links" id="desktopNavLinks">
         <a href="#about">About</a>
+        <a href="#posters">Promosi</a>
         <a href="#treatments">Rawatan</a>
         <a href="#packages">Pakej</a>
         <a href="#bekam">Bekam</a>
@@ -345,6 +346,7 @@
     </div>
     <div class="mobile-menu" id="mobileMenu">
       <a href="#about">About <span>→</span></a>
+      <a href="#posters">Promosi <span>→</span></a>
       <a href="#treatments">Rawatan <span>→</span></a>
       <a href="#packages">Pakej <span>→</span></a>
       <a href="#bekam">Bekam <span>→</span></a>
@@ -557,6 +559,34 @@
               <span>Selamat &amp; Terbukti</span>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ POSTER / PROMOSI ============ -->
+  <section id="posters" class="alt-bg">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow" style="justify-content:center;">Promosi Terkini</span>
+        <h2>Rawatan &amp; Servis Kami</h2>
+        <p>Lihat servis lengkap yang ditawarkan di Aisyah Luxe Spa Kuala Krai, Kelantan.</p>
+      </div>
+      <div class="poster-grid reveal">
+        <div class="poster-card" onclick="openLightbox('images/poster/poster1.jpg')" role="button" tabindex="0" aria-label="Lihat poster promosi">
+          <img src="images/poster/poster1.jpg" alt="Aisyah Luxe Spa Kuala Krai — Promosi Rawatan Muka &amp; Bekam" loading="lazy">
+        </div>
+        <div class="poster-card" onclick="openLightbox('images/poster/poster2.jpg')" role="button" tabindex="0" aria-label="Lihat poster servis">
+          <img src="images/poster/poster2.jpg" alt="Aisyah Luxe Spa — Servis Facial &amp; Kecantikan Kuala Krai" loading="lazy">
+        </div>
+        <div class="poster-card" onclick="openLightbox('images/poster/poster3.jpg')" role="button" tabindex="0" aria-label="Lihat poster pakej">
+          <img src="images/poster/poster3.jpg" alt="Aisyah Luxe Spa — Pakej Rawatan Premium Kuala Krai" loading="lazy">
+        </div>
+        <div class="poster-card" onclick="openLightbox('images/poster/poster4.jpg')" role="button" tabindex="0" aria-label="Lihat poster servis">
+          <img src="images/poster/poster4.jpg" alt="Aisyah Luxe Spa — Skin Tag &amp; Hair Removal Kuala Krai" loading="lazy">
+        </div>
+        <div class="poster-card poster-card--wide" onclick="openLightbox('images/poster/hair-removal.png')" role="button" tabindex="0" aria-label="Lihat poster hair removal">
+          <img src="images/poster/hair-removal.png" alt="Aisyah Luxe Spa — Servis Hair Removal Muslimah Kuala Krai" loading="lazy">
         </div>
       </div>
     </div>
@@ -1451,6 +1481,7 @@
     <p class="footer-motto"><em>Sayangi kulit, diri lebih berseri — Spa Muslimah #1 di Kuala Krai.</em> ♡</p>
     <ul class="foot-links">
       <li><a href="#about">About</a></li>
+      <li><a href="#posters">Promosi</a></li>
       <li><a href="#treatments">Rawatan</a></li>
       <li><a href="#packages">Pakej</a></li>
       <li><a href="#bekam">Bekam</a></li>
@@ -1622,6 +1653,13 @@
         </button>
       </form>
     </div>
+  </div>
+
+  <!-- ============ POSTER LIGHTBOX ============ -->
+  <div class="lightbox-overlay" id="lightboxOverlay" onclick="closeLightbox()" aria-label="Tutup poster">
+    <button class="lightbox-close" onclick="closeLightbox()" aria-label="Tutup">✕</button>
+    <img src="" alt="" id="lightboxImg" onclick="event.stopPropagation()">
+    <div class="lightbox-hint">Klik di luar gambar untuk tutup</div>
   </div>
 
   <!-- Application JS -->

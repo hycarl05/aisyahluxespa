@@ -578,4 +578,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
   })();
 
+  // =========================================================================
+  // POSTER LIGHTBOX
+  // =========================================================================
+  window.openLightbox = function (src) {
+    const overlay = document.getElementById('lightboxOverlay');
+    const img = document.getElementById('lightboxImg');
+    img.src = src;
+    img.alt = 'Poster Aisyah Luxe Spa';
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  };
+
+  window.closeLightbox = function () {
+    const overlay = document.getElementById('lightboxOverlay');
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+  };
+
+  // Close lightbox with Escape key
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      closeLightbox();
+    }
+  });
+
 });

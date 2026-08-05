@@ -898,6 +898,129 @@ section {
   margin-top: 2px;
 }
 
+/* ---------- POSTER / PROMOSI ---------- */
+
+.poster-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  padding-bottom: 20px;
+}
+
+.poster-card {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: #fff;
+}
+
+.poster-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+.poster-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.poster-card--wide {
+  grid-column: 1 / -1;
+  max-width: 100%;
+}
+
+.poster-card--wide img {
+  max-height: 500px;
+  object-fit: contain;
+  background: #fff;
+}
+
+.poster-card {
+  cursor: pointer;
+  position: relative;
+}
+
+.poster-card::after {
+  content: "🔍 Klik untuk lihat";
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: rgba(51, 66, 43, 0.8);
+  color: #fff;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  pointer-events: none;
+}
+
+.poster-card:hover::after {
+  opacity: 1;
+}
+
+/* ---------- LIGHTBOX ---------- */
+
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.92);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.lightbox-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lightbox-overlay img {
+  max-width: 92vw;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  border: none;
+  font-size: 1.6rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 1;
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.lightbox-hint {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.85rem;
+}
+
 /* ---------- GALLERY — STACKED CARDS ---------- */
 
 /* Single column centered layout for cards stack */
