@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /images/
+
+Sitemap: https://aisyahluxespa.com/sitemap.xml
+
+# Crawl-delay: 10
