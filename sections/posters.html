@@ -1,28 +1,62 @@
 <!-- ============ POSTER / PROMOSI ============ -->
 <section id="posters" class="alt-bg">
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="eyebrow" style="justify-content:center;">Promosi Terkini</span>
-      <h2>Rawatan &amp; Servis Kami</h2>
-      <p>Lihat servis lengkap yang ditawarkan di Aisyah Luxe Spa Kuala Krai, Kelantan.</p>
+  <div class="container promo-split reveal" id="posterSlider">
+
+    <div class="promo-deco pd1">
+      <svg viewBox="0 0 40 40" fill="none">
+        <path d="M20 4c8 8 8 20 0 32c-8-12-8-24 0-32Z" stroke="#6E8A62" stroke-width="1.4" fill="#D9A9A0"
+          fill-opacity="0.3" />
+      </svg>
     </div>
-    <div class="poster-grid reveal">
-      <div class="poster-card" onclick="openLightbox('images/poster/poster1.jpg')" role="button" tabindex="0" aria-label="Lihat poster promosi">
-        <img src="images/poster/poster1.jpg" alt="Aisyah Luxe Spa Kuala Krai — Promosi Rawatan Muka &amp; Bekam" loading="lazy">
-      </div>
-      <div class="poster-card" onclick="openLightbox('images/poster/poster2.jpg')" role="button" tabindex="0" aria-label="Lihat poster servis">
-        <img src="images/poster/poster2.jpg" alt="Aisyah Luxe Spa — Servis Facial &amp; Kecantikan Kuala Krai" loading="lazy">
-      </div>
-      <div class="poster-card" onclick="openLightbox('images/poster/poster3.jpg')" role="button" tabindex="0" aria-label="Lihat poster pakej">
-        <img src="images/poster/poster3.jpg" alt="Aisyah Luxe Spa — Pakej Rawatan Premium Kuala Krai" loading="lazy">
-      </div>
-      <div class="poster-card" onclick="openLightbox('images/poster/poster4.jpg')" role="button" tabindex="0" aria-label="Lihat poster servis">
-        <img src="images/poster/poster4.jpg" alt="Aisyah Luxe Spa — Skin Tag &amp; Hair Removal Kuala Krai" loading="lazy">
-      </div>
-      <div class="poster-card poster-card--wide" onclick="openLightbox('images/poster/hair-removal.png')" role="button" tabindex="0" aria-label="Lihat poster hair removal">
-        <img src="images/poster/hair-removal.png" alt="Aisyah Luxe Spa — Servis Hair Removal Muslimah Kuala Krai" loading="lazy">
-      </div>
+    <div class="promo-deco pd2">
+      <svg viewBox="0 0 40 40" fill="none">
+        <path d="M6 20c8-10 20-10 28 0c-8 8-20 8-28 0Z" stroke="#6E8A62" stroke-width="1.4" fill="#9AAE85"
+          fill-opacity="0.3" />
+      </svg>
     </div>
+    <div class="promo-deco pd3">
+      <svg viewBox="0 0 40 40" fill="none">
+        <circle cx="20" cy="20" r="4" fill="#C6A15B" />
+        <path d="M20 20c0-8 4-12 10-14M20 20c0 8-4 12-10 14" stroke="#6E8A62" stroke-width="1.2" />
+      </svg>
+    </div>
+
+    <div class="promo-poster-col">
+      <div class="slider-frame">
+        <div class="slide active" data-src="images/poster/poster1.jpg" role="button" tabindex="0"
+          aria-label="Lihat poster: Promosi Rawatan Muka">
+          <img src="images/poster/poster1.jpg" alt="Aisyah Luxe Spa Kuala Krai — Promosi Rawatan Muka" loading="lazy">
+        </div>
+        <div class="slide" data-src="images/poster/poster2.jpg" role="button" tabindex="0"
+          aria-label="Lihat poster: Servis Bekam">
+          <img src="images/poster/poster2.jpg" alt="Aisyah Luxe Spa — Servis Bekam" loading="lazy">
+        </div>
+        <div class="slide" data-src="images/poster/poster3.jpg" role="button" tabindex="0"
+          aria-label="Lihat poster: Pakej Rawatan Premium">
+          <img src="images/poster/poster3.jpg" alt="Aisyah Luxe Spa — Pakej Rawatan Premium Kuala Krai" loading="lazy">
+        </div>
+        <div class="slide" data-src="images/poster/poster4.jpg" role="button" tabindex="0"
+          aria-label="Lihat poster: Skin Tag & Mole Removal">
+          <img src="images/poster/poster4.jpg" alt="Aisyah Luxe Spa — Skin Tag &amp; Mole Removal Kuala Krai"
+            loading="lazy">
+        </div>
+        <div class="slide" data-src="images/poster/hair-removal.png" role="button" tabindex="0"
+          aria-label="Lihat poster: Servis Hair Removal Muslimah">
+          <img src="images/poster/hair-removal.png" alt="Aisyah Luxe Spa — Servis Hair Removal Muslimah Kuala Krai"
+            loading="lazy">
+        </div>
+      </div>
+      <div class="dots" id="posterDots"></div>
+    </div>
+
+    <div class="promo-text-col">
+      <span class="eyebrow">Muslimah Friendly · Premium Treatment</span>
+      <h2 class="promo-title">Aisyah <span class="accent">Luxe</span> Spa</h2>
+      <div class="promo-rule"></div>
+      <p class="slide-caption rise" id="posterCaption" aria-live="polite">Promosi Rawatan Muka</p>
+      <a class="promo-cta" href="https://wa.me/601171127820" target="_blank" rel="noopener">Book Your Slot Now →</a>
+    </div>
+
   </div>
 </section>
 
