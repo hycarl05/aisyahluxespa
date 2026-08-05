@@ -80,6 +80,19 @@
     <priority>0.3</priority>
   </url>
 
+  <!-- ====== TIPS ARTIKEL ====== -->
+  <url>
+    <loc>https://aisyahluxespa.com/tips-penjagaan-kulit.html</loc>
+    <lastmod>2026-08-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://aisyahluxespa.com/images/og-image.jpg</image:loc>
+      <image:title>5 Tips Penjagaan Kulit Untuk Wanita Muslimah</image:title>
+      <image:caption>Panduan penjagaan kulit dari Aisyah Luxe Spa Kuala Krai</image:caption>
+    </image:image>
+  </url>
+
   <!-- ====== KEY IMAGES (Google Image Search) ====== -->
   <url>
     <loc>https://aisyahluxespa.com/images/logo.jpg</loc>
@@ -94,14 +107,14 @@
   </url>
 
   <url>
-    <loc>https://aisyahluxespa.com/images/signature_bath.png</loc>
+    <loc>https://aisyahluxespa.com/images/og-image.jpg</loc>
     <lastmod>2026-08-05</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
     <image:image>
-      <image:loc>https://aisyahluxespa.com/images/signature_bath.png</image:loc>
-      <image:title>Aisyah Luxe Spa Signature Bath — Rawatan Premium</image:title>
-      <image:caption>Rawatan signature bath di Aisyah Luxe Spa Kuala Krai</image:caption>
+      <image:loc>https://aisyahluxespa.com/images/og-image.jpg</image:loc>
+      <image:title>Aisyah Luxe Spa Kuala Krai — Spa Muslimah &amp; Bekam Premium</image:title>
+      <image:caption>Aisyah Luxe Spa di Kuala Krai, Kelantan — rawatan muka dan bekam premium</image:caption>
     </image:image>
   </url>
 
