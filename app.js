@@ -307,7 +307,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (bookingSelect && treatmentName) {
       for (let option of bookingSelect.options) {
         if (option.text.toLowerCase().includes(treatmentName.toLowerCase()) ||
-            option.value.toLowerCase().includes(treatmentName.toLowerCase())) {
+          option.value.toLowerCase().includes(treatmentName.toLowerCase())) {
           option.selected = true;
           break;
         }
@@ -440,20 +440,100 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   // =========================================================================
-  // 15. Gallery — Auto-Advancing Swipeable Stacked Cards
+  // 15. Poster Slider (Promosi Terkini) — moved inside DOMContentLoaded
+  //     and guarded so it never runs against a missing/not-yet-loaded section
+  // =========================================================================
+  (function initPosterSlider() {
+    const slider = document.getElementById('posterSlider');
+    if (!slider) return; // bail out if this section isn't on the current page
+
+    const captions = [
+      "Promosi Rawatan Muka",
+      "Servis Bekam",
+      "Pakej Rawatan Premium",
+      "Skin Tag & Mole Removal",
+      "Servis Hair Removal Muslimah"
+    ];
+    const slides = Array.from(slider.querySelectorAll('.slide'));
+    const dotsWrap = document.getElementById('posterDots');
+    const captionEl = document.getElementById('posterCaption');
+    const frame = slider.querySelector('.slider-frame');
+    if (!slides.length || !dotsWrap || !captionEl || !frame) return; // guard the rest too
+
+    const AUTOPLAY_MS = 3000;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let current = 0, timer = null;
+
+    slides.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'dot' + (i === 0 ? ' active' : '');
+      dot.setAttribute('aria-label', `Lihat poster ${i + 1}`);
+      dotsWrap.appendChild(dot);
+    });
+    const dots = Array.from(dotsWrap.children);
+
+    function playCaption() {
+      captionEl.classList.remove('play');
+      void captionEl.offsetWidth; // force reflow so the animation restarts
+      captionEl.classList.add('play');
+    }
+
+    function goTo(index) {
+      slides[current].classList.remove('active');
+      dots[current].classList.remove('active');
+      current = index;
+      slides[current].classList.add('active');
+      dots[current].classList.add('active');
+      captionEl.textContent = captions[current];
+      playCaption();
+    }
+
+    function next() { goTo((current + 1) % slides.length); }
+    function start() { if (!reducedMotion) { stop(); timer = setInterval(next, AUTOPLAY_MS); } }
+    function stop() { if (timer) clearInterval(timer); timer = null; }
+
+    slides.forEach(slide => {
+      slide.addEventListener('click', () => openLightbox(slide.dataset.src));
+      slide.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openLightbox(slide.dataset.src);
+        }
+      });
+    });
+
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        goTo(i);
+        start(); // manual jump gets a fresh 3s cycle instead of stacking with the running timer
+      });
+    });
+
+    frame.addEventListener('mouseenter', stop);
+    frame.addEventListener('mouseleave', start);
+    frame.addEventListener('touchstart', stop, { passive: true });
+    frame.addEventListener('touchend', () => setTimeout(start, 800), { passive: true });
+
+    playCaption();
+    start();
+  })();
+
+  // =========================================================================
+  // 16. Gallery — Auto-Advancing Swipeable Stacked Cards
   // =========================================================================
   (function initStackedGallery() {
-    const stack        = document.getElementById('skgStack');
-    const dotsWrap     = document.getElementById('skgDots');
-    const curEl        = document.getElementById('skgCur');
-    const totEl        = document.getElementById('skgTot');
+    const stack = document.getElementById('skgStack');
+    const dotsWrap = document.getElementById('skgDots');
+    const curEl = document.getElementById('skgCur');
+    const totEl = document.getElementById('skgTot');
     const progressFill = document.getElementById('skgProgressFill');
 
     if (!stack) return;
 
-    const AUTOPLAY_MS    = 3000;
+    const AUTOPLAY_MS = 3000;
     const DRAG_THRESHOLD = 85;
-    const reducedMotion  = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     // order[0] = current top card
     let order = Array.from(stack.querySelectorAll('.skg-card'));
@@ -469,7 +549,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       dot.setAttribute('aria-label', 'Foto ' + (i + 1));
       dot.addEventListener('click', () => {
         const target = originalCards[i];
-        const pos    = order.indexOf(target);
+        const pos = order.indexOf(target);
         if (pos === 0) return;
         let steps = pos;
         (function cycleNext() {
@@ -488,11 +568,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     // ---- Layout ----
     function layout() {
       order.forEach((card, i) => {
-        card.style.zIndex     = total - i;
-        card.style.opacity    = i < 5 ? '1' : '0';
+        card.style.zIndex = total - i;
+        card.style.opacity = i < 5 ? '1' : '0';
         card.classList.toggle('is-top', i === 0);
         card.style.transition = 'transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.4s ease, box-shadow 0.3s ease';
-        card.style.transform  =
+        card.style.transform =
           `translate(-50%, -50%) translateY(${i * 12}px) scale(${1 - i * 0.04}) rotate(${depthRotation[i] || 0}deg)`;
       });
       updateMeta();
@@ -522,7 +602,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // ---- Autoplay ----
     let autoTimer = null;
-    let busy      = false;
+    let busy = false;
 
     function startAutoplay() {
       if (reducedMotion) return;
@@ -546,13 +626,13 @@ document.addEventListener('DOMContentLoaded', async () => {
       if (animate) {
         busy = true;
         card.style.transition = 'transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.4s ease';
-        card.style.transform  = `translate(-50%, -50%) translateX(${direction * 560}px) rotate(${direction * 28}deg)`;
-        card.style.opacity    = '0';
+        card.style.transform = `translate(-50%, -50%) translateX(${direction * 560}px) rotate(${direction * 28}deg)`;
+        card.style.opacity = '0';
         card.classList.remove('is-top');
         setTimeout(() => {
           order.push(order.shift());
           card.style.transition = 'none';
-          card.style.opacity    = '1';
+          card.style.opacity = '1';
           layout();
           requestAnimationFrame(() => { card.style.transition = ''; });
           busy = false;
@@ -560,7 +640,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       } else {
         order.push(order.shift());
         card.style.transition = 'none';
-        card.style.opacity    = '1';
+        card.style.opacity = '1';
         layout();
       }
     }
@@ -571,9 +651,9 @@ document.addEventListener('DOMContentLoaded', async () => {
       const card = order.pop();
       order.unshift(card);
       card.style.transition = 'none';
-      card.style.opacity    = '1';
-      card.style.zIndex     = total + 1;
-      card.style.transform  = `translate(-50%, -50%) translateX(560px) rotate(28deg)`;
+      card.style.opacity = '1';
+      card.style.zIndex = total + 1;
+      card.style.transform = `translate(-50%, -50%) translateX(560px) rotate(28deg)`;
       requestAnimationFrame(() => {
         card.style.transition = 'transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.4s ease';
         layout();
@@ -588,7 +668,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       if (e.target.closest('.skg-card') !== topCard) return;
       dragging = true;
       dragCard = topCard;
-      startX   = e.clientX;
+      startX = e.clientX;
       topCard.setPointerCapture(e.pointerId);
       topCard.style.transition = 'none';
       stopAutoplay(); // pause while dragging
@@ -611,11 +691,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         layout(); // snap back
       }
       currentX = 0;
-      dragCard  = null;
+      dragCard = null;
       startAutoplay(); // resume fresh cycle
     }
 
-    stack.addEventListener('pointerup',     endDrag);
+    stack.addEventListener('pointerup', endDrag);
     stack.addEventListener('pointercancel', endDrag);
 
     // ---- Kick off ----
@@ -624,4 +704,3 @@ document.addEventListener('DOMContentLoaded', async () => {
   })();
 
 });
-
