@@ -2,7 +2,52 @@
    Aisyah Luxe Spa — Interactive Application Logic
    ========================================================================== */
 
-document.addEventListener('DOMContentLoaded', () => {
+// Poster Lightbox global handlers
+window.openLightbox = function (src) {
+  const overlay = document.getElementById('lightboxOverlay');
+  const img = document.getElementById('lightboxImg');
+  if (overlay && img) {
+    img.src = src;
+    img.alt = 'Poster Aisyah Luxe Spa';
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+};
+
+window.closeLightbox = function () {
+  const overlay = document.getElementById('lightboxOverlay');
+  if (overlay) {
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+};
+
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape') {
+    window.closeLightbox();
+  }
+});
+
+document.addEventListener('DOMContentLoaded', async () => {
+
+  // Load section HTML partials if [data-include] elements are present
+  const includes = document.querySelectorAll('[data-include]');
+  if (includes.length > 0) {
+    await Promise.all(Array.from(includes).map(async (el) => {
+      try {
+        const file = el.getAttribute('data-include');
+        const res = await fetch(file);
+        if (res.ok) {
+          const html = await res.text();
+          el.outerHTML = html;
+        } else {
+          console.error(`Failed to load section partial ${file}: ${res.status}`);
+        }
+      } catch (err) {
+        console.error(`Error loading section partial:`, err);
+      }
+    }));
+  }
 
   const WA_NUMBER = '601171127820';
 
@@ -578,29 +623,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
   })();
 
-  // =========================================================================
-  // POSTER LIGHTBOX
-  // =========================================================================
-  window.openLightbox = function (src) {
-    const overlay = document.getElementById('lightboxOverlay');
-    const img = document.getElementById('lightboxImg');
-    img.src = src;
-    img.alt = 'Poster Aisyah Luxe Spa';
-    overlay.classList.add('active');
-    document.body.style.overflow = 'hidden';
-  };
-
-  window.closeLightbox = function () {
-    const overlay = document.getElementById('lightboxOverlay');
-    overlay.classList.remove('active');
-    document.body.style.overflow = '';
-  };
-
-  // Close lightbox with Escape key
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') {
-      closeLightbox();
-    }
-  });
-
 });
+

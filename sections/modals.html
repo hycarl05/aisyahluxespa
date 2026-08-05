@@ -1,0 +1,141 @@
+<!-- ============ TREATMENT DETAIL MODAL ============ -->
+<div class="modal-overlay" id="detailModal">
+  <div class="modal-card">
+    <button class="modal-close" aria-label="Close modal">✕</button>
+    <div class="modal-header">
+      <span class="detail-tag" id="detailTag">Treatment Tag</span>
+      <h3 id="detailTitle">Treatment Title</h3>
+    </div>
+    <div class="detail-price-row">
+      <span id="detailPrice">RM 00</span>
+      <span id="detailDuration">⏱️ 00 mins</span>
+    </div>
+    <p id="detailDesc" style="color:#5B5346;line-height:1.65;">Treatment description goes here...</p>
+
+    <strong style="color:var(--green-deep);display:block;margin-top:20px;">Senarai Harga Rawatan:</strong>
+    <ul class="detail-steps" id="detailSteps">
+      <!-- Injected by JS -->
+    </ul>
+
+    <div style="margin-top:28px;">
+      <button class="btn btn-primary" id="detailBookBtn" style="width:100%;">Tempah Rawatan Ini</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============ BOOKING MODAL ============ -->
+<div class="modal-overlay" id="bookingModal">
+  <div class="modal-card">
+    <button class="modal-close" aria-label="Close modal">✕</button>
+    <div class="modal-header">
+      <span class="eyebrow">Aisyah Luxe Spa</span>
+      <h3>Tempah Rawatan Anda</h3>
+      <p>Isi maklumat di bawah dan kami akan hubungi anda melalui WhatsApp.</p>
+    </div>
+
+    <form id="modalBookingForm">
+      <div class="form-group">
+        <label for="modalName">Nama Penuh *</label>
+        <input type="text" id="modalName" class="form-control" placeholder="cth. Nur Aisyah" required>
+      </div>
+
+      <div class="form-group">
+        <label for="modalPhone">No. Telefon / WhatsApp *</label>
+        <input type="tel" id="modalPhone" class="form-control" placeholder="cth. 011-1234 5678" required>
+      </div>
+
+      <div class="form-group">
+        <label for="modalTreatmentSelect">Rawatan Yang Dipilih *</label>
+        <select id="modalTreatmentSelect" class="form-control" required>
+          <optgroup label="── Promo ──">
+            <option>Flawless Facial (RM49 Promo)</option>
+          </optgroup>
+          <optgroup label="── Signature Facial ──">
+            <option>Luxe Glow Facial (RM120)</option>
+            <option>Signature Facial (RM150)</option>
+            <option>Vitamin C Facial (RM250)</option>
+          </optgroup>
+          <optgroup label="── Glowing Facial ──">
+            <option>Crystal Gel Facial (RM199)</option>
+            <option>Vitasnow Facial (RM399)</option>
+            <option>Aqua Hyaluronic Calming (RM250)</option>
+            <option>Hydrating Facial (RM180)</option>
+          </optgroup>
+          <optgroup label="── Pigmentation & Whitening ──">
+            <option>Lightening Facial (RM180)</option>
+            <option>Aqua AHA Peel (RM250)</option>
+            <option>Dermabright Peel (RM270)</option>
+            <option>Elite K-Light Whitening (RM349)</option>
+            <option>Premium Aqua AHA (RM399)</option>
+          </optgroup>
+          <optgroup label="── Anti Aging & Care ──">
+            <option>Dermapen Therapy (RM250)</option>
+            <option>Ice Snow Facial (RM239)</option>
+            <option>Double Layer Vitamin C (RM399)</option>
+          </optgroup>
+          <optgroup label="── Oily & Acne ──">
+            <option>Diamond Carbon Peel (RM300)</option>
+            <option>Purifying Facial (RM180)</option>
+            <option>Acne Elite K-Light (RM399)</option>
+            <option>Aqua BHA Peel (RM250)</option>
+          </optgroup>
+          <optgroup label="── Anti-Aging & Firming ──">
+            <option>Luxury Mask (RM299)</option>
+            <option>Snow White Facial (RM199)</option>
+            <option>Primadona Facial (RM199)</option>
+          </optgroup>
+          <optgroup label="── Eye Treatment ──">
+            <option>Under Eye Treatment (RM150)</option>
+            <option>Eye Package 3 Sesi (RM399)</option>
+          </optgroup>
+          <optgroup label="── Pakej ──">
+            <option>Pakej Pore Repair (RM1108)</option>
+            <option>Pakej Pigment Repair (RM1248)</option>
+            <option>Pakej Acne Repair (RM1029)</option>
+            <option>Pakej Luxe Bright (RM1127)</option>
+          </optgroup>
+          <optgroup label="── Bekam ──">
+            <option>Bekam Sunnah Asas (RM40–RM50)</option>
+            <option>Bekam Separuh Badan (RM70)</option>
+            <option>Bekam Seluruh Badan (RM100)</option>
+            <option>Bekam Muka / Resdung / Jerawat (RM40–RM50)</option>
+            <option>Bekam Kepala (RM30–RM50)</option>
+            <option>Bekam Lutut / Kaki (RM30–RM50)</option>
+            <option>Pakej Bekam 3x (RM250)</option>
+          </optgroup>
+          <optgroup label="── Removal ──">
+            <option>Skintag / Oil Cyst Removal</option>
+            <option>Wart / Mole Removal</option>
+          </optgroup>
+        </select>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="modalDate">Tarikh Pilihan *</label>
+          <input type="date" id="modalDate" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="modalTime">Masa Pilihan *</label>
+          <input type="time" id="modalTime" class="form-control" required>
+        </div>
+      </div>
+
+      <button type="submit" class="btn-whatsapp" style="margin-top:14px;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z" />
+        </svg>
+        Hantar Tempahan via WhatsApp
+      </button>
+    </form>
+  </div>
+</div>
+
+<!-- ============ POSTER LIGHTBOX ============ -->
+<div class="lightbox-overlay" id="lightboxOverlay" onclick="closeLightbox()" aria-label="Tutup poster">
+  <button class="lightbox-close" onclick="closeLightbox()" aria-label="Tutup">✕</button>
+  <img src="" alt="" id="lightboxImg" onclick="event.stopPropagation()">
+  <div class="lightbox-hint">Klik di luar gambar untuk tutup</div>
+</div>
+
