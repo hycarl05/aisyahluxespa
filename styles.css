@@ -1624,6 +1624,39 @@ section {
   transform: translateY(-2px);
 }
 
+/* ---------- GOOGLE MAPS ---------- */
+
+.contact-map {
+  margin-top: 40px;
+  border-radius: var(--radius-lg);
+  overflow: visible;
+  box-shadow: var(--shadow);
+  width: 100%;
+}
+
+.contact-map iframe {
+  display: block;
+  width: 100%;
+  height: 380px;
+  border: 0;
+  border-radius: var(--radius-lg);
+}
+
+@media (max-width: 768px) {
+  .contact-map {
+    margin-top: 28px;
+  }
+  .contact-map iframe {
+    height: 320px;
+  }
+}
+
+.contact-map iframe {
+  display: block;
+  width: 100%;
+  border-radius: var(--radius-lg);
+}
+
 @media (max-width: 860px) {
   .contact {
     margin: 0 14px;
@@ -1634,6 +1667,55 @@ section {
   .contact-grid {
     grid-template-columns: 1fr;
     gap: 36px;
+  }
+
+  .booking-box {
+    padding: 22px 18px;
+    margin: 0;
+  }
+
+  .booking-box h3 {
+    font-size: 1.15rem;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .btn-whatsapp {
+    font-size: 0.9rem;
+    padding: 12px 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact {
+    padding: 32px 16px;
+    margin: 0 8px;
+  }
+
+  .booking-box {
+    padding: 16px 12px;
+    border-radius: 14px;
+  }
+
+  .booking-box h3 {
+    font-size: 1.05rem;
+  }
+
+  .booking-box p.sub-box {
+    font-size: 0.8rem;
+  }
+
+  .form-control {
+    padding: 10px 14px;
+    font-size: 0.9rem;
+  }
+
+  .btn-whatsapp {
+    font-size: 0.85rem;
+    padding: 12px 16px;
   }
 }
 
